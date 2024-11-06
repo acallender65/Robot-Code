@@ -38,14 +38,14 @@ void loop() {
   if (RS == 0) { // if right sensor doesn't sense a line
     Serial.println("no line on r"); // print to terminal
     lineR = false; // sets value of lineR (we'll use this variable later when considering the different situations)
-    digitalWrite(5, LOW); // turn the speed off
-    digitalWrite(3, LOW); // turn right wheels off
+    digitalWrite(3, LOW); // turn the speed off
+    digitalWrite(5, LOW); // turn right wheels off
   }
   else { // i.e. if R != 0, if the right sensor does sense a line
     Serial.println("line on r");
     lineR = true;
-    digitalWrite(5, 1); // turn the speed to 1
-    digitalWrite(3, 1); // turn right wheels on
+    digitalWrite(3, 1); // turn the speed to 1
+    digitalWrite(5, 1); // turn right wheels on
   }
 
 
