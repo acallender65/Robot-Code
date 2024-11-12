@@ -76,4 +76,19 @@ if (RS == 0) && (CS == 0) && (LS != 0) {
   digitalWrite(3, LOW); //speed 
   digitalWrite(6, LOW); // turn left wheel
   }
-//fff
+//CASE FOR FFF - runs in timed left n right:
+if (RS == 0) && (CS == 0) && (LS == 0)
+  Serial.println("no line detected") // prints to terminal
+  lineR = false;
+  lineC= false;
+  lineL = false;
+  digitalWrite(3, HIGH);
+  digitalwrite(5, HIGH);
+  digitalwrite(6, HIGH);
+  delay(50);
+  digitalwrite(6, HIGH);
+  delay(50);
+  digitalWrite(3, HIGH);
+  delay(50);
+
+}
