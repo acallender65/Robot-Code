@@ -12,13 +12,13 @@ Here are the pins:
 
 
 Here is the truth table for our robot:
-| Right | Central | Left | Action |
-| -- | -- | -- | -- |
-| T | T | T | turn right (convention) |
-| T | T | F | turn right (less) |
-| T | F | T | ? |
+| Right | Central | Left | Action | Done |
+| -- | -- | -- | -- | -- |
+| T | T | T | turn right (convention) | 
+| T | T | F | turn right (less) | 
+| T | F | T | ? | no
 | T | F | F | turn right (more) |
 | F | T | T | turn left (less) |
-| F | T | F | go straight |
+| F | T | F | go straight | no
 | F | F | T | turn left (more) |
-| F | F | F | spin in circles? |
+| F | F | F | spin in circles? | no
