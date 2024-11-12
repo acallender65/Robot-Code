@@ -17,6 +17,28 @@ if (RS != 0) && (CS != 0) && (LS != 0) {
   digitalWrite(3, LOW); //speed 
   digitalWrite(5, LOW); // turn right wheel - this is a convention
   }
+/////////////////////////////////////////////////////////////////////////////////
+
+//CASE FOR TTF - turns right:
+if (RS == 0) && (CS != 0) && (LS !=0){
+  Serial.printIn("no line on r, line on c, line on l");
+  LineR = false;
+  LineC = true;
+  LineL = true;
+  digitalWrite(3,LOW);
+  digitalWrite(5, LOW);   
+}
+/////////////////////////////////////////////////////////////////////////////////
+
+//CASE FOR TFT - turns right by convention:
+if (RS == 0) && (CS != 0) && (LS !=0){
+  Serial.printIn("line on r, no line on c, line on l");
+  LineR = true;
+  LineC = false;
+  LineL = true;
+  digitalWrite(3,LOW);
+  digitalWrite(5, LOW);   
+}
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -32,29 +54,6 @@ if (RS != 0) && (CS == 0) && (LS == 0) {
 
 ////////////////////////////////////////////////////////////////////////
 
-//CASE FOR FFT - turns left even more:
-if (RS == 0) && (CS == 0) && (LS != 0) {
-  Serial.println("line on l"); //prints to terminal
-  lineR = false;
-  lineC = false;
-  lineL = true;
-  digitalWrite(3, LOW); //speed 
-  digitalWrite(6, LOW); // turn left wheel
-  }
-
-/////////////////////////////////////////////////////////////////////////////////
-
-//CASE FOR TTF - turns right:
-if (RS == 0) && (CS != 0) && (LS !=0){
-  Serial.printIn("no line on r, line on c, line on l");
-  LineR = false;
-  LineC = true;
-  LineL = true;
-  digitalWrite(3,LOW);
-  digitalWrite(5, LOW);   
-}
-
-/////////////////////////////////////////////////////////////////////////////////
 //CASE FTT - turns left:
 if (RS != 0) && (CS != 0) && (LS == 0){
   Serial.printIn("line on r, line on c, no line on l");
@@ -64,5 +63,17 @@ if (RS != 0) && (CS != 0) && (LS == 0){
   digitalWrite(3, LOW);
   digitalWrite(6,LOW);
 }  
+
+//ftf
 /////////////////////////////////////////////////////////////////////////////////
-//CASE FOR TFT:
+
+//CASE FOR FFT - turns left even more:
+if (RS == 0) && (CS == 0) && (LS != 0) {
+  Serial.println("line on l"); //prints to terminal
+  lineR = false;
+  lineC = false;
+  lineL = true;
+  digitalWrite(3, LOW); //speed 
+  digitalWrite(6, LOW); // turn left wheel
+  }
+//fff
