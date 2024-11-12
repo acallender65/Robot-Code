@@ -67,6 +67,17 @@ if (RS != 0) && (CS != 0) && (LS == 0){
 //ftf
 /////////////////////////////////////////////////////////////////////////////////
 
+//CASE FOR FTF - keeps going straight:
+if (RS == 0) && (CS != 0) && (LS == 0) {
+  Serial.println("no line on r, line on c, no line on l");
+  lineR = false;
+  lineC = true;
+  lineL = false;
+  digitalWrite(3, LOW); //speed 
+  digitalWrite(5, LOW); // right wheels
+  digitalWrite(6, LOW); // left wheels
+}
+
 //CASE FOR FFT - turns left even more:
 if (RS == 0) && (CS == 0) && (LS != 0) {
   Serial.println("line on l"); //prints to terminal
