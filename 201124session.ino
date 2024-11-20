@@ -18,41 +18,26 @@ void setup() {
   pinMode(A2, INPUT); // LEFT SENSOR
 }
 
-// we are setting the min and max that the sensors will input
-const int sensorMin = 0;
-const int sensorMax = 255;
-
-// declaring variables
-bool LineR;
-bool LineC;
-bool LineL;
-
 void loop() {
 
   int R = analogRead(A0);
-
   int C = analogRead(A1);
-
   int L = analogRead(A2);
-
 
   analogWrite(3, 0);
 
   ////////////////////////////////////////////////////////////////////////
 
-  //CASE FOR TTT - turns right by convention:
-  if ((R >400)) {
-    
-    Serial.println("LINE"); //prints to terminal
-
-    analogWrite(3, 125); //speed
-    analogWrite(5, 125); // turn right wheel - this is a convention
-    digitalWrite(7, HIGH);
+  if ((R >400) && (C>400) && (L>400)) { //CASE FOR TTT - turns right by convention:
+    Serial.println("ALL SENSORS ACTIVATED!"); //prints to terminal
+    analogWrite(3, 125);
+    analogWrite(5, 125); 
+    digitalWrite(7, LOW); // turn right wheel backward
     analogWrite(6, 125); 
-    digitalWrite(8, LOW); //turn left wheel backwards
+    digitalWrite(8, HIGH); //turn left wheel forward
     }
   /////////////////////////////////////////////////////////////////////////////////
-  else if (R<=400) {
+  else if ((R<=400) {
     Serial.println("no line JFDHKJDFHSDJFJDSH"); //prints to terminal
     analogWrite(3, 0); //speed
     analogWrite(5, 0); // turn right wheel - this is a convention
