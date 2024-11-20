@@ -59,10 +59,7 @@ void loop() {
     LineL = true;
     analogWrite(3, 0); //speed
     analogWrite(5, 0); // turn right wheel - this is a convention
-    digitalWrite(7, HIGH);
     analogWrite(6, 0); //turn left wheel FORWARDS
-    digitalWrite(8, HIGH);
-
     }
 
 }
