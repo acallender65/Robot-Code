@@ -30,106 +30,39 @@ bool LineL;
 void loop() {
 
   int R = analogRead(A0);
-  int RS = map(R, sensorMin, sensorMax, 0,1);
+
   int C = analogRead(A1);
-  int CS = map(C, sensorMin, sensorMax, 0,1);
+
   int L = analogRead(A2);
-  int LS = map(L, sensorMin, sensorMax, 0,1);
+
+
+  analogWrite(3, 0);
 
   ////////////////////////////////////////////////////////////////////////
 
   //CASE FOR TTT - turns right by convention:
-  if ((RS != 0) && (CS != 0) && (LS != 0)) {
-    Serial.println("line on r, c, l"); //prints to terminal
-    LineR = true;
-    LineC = true;
-    LineL = true;
-    analogWrite(3, 250); //speed 
-    analogWrite(5, 250); // turn right wheel - this is a convention
+  if ((R >400)) {
+    
+    Serial.println("LINE"); //prints to terminal
+
+    analogWrite(3, 125); //speed
+    analogWrite(5, 125); // turn right wheel - this is a convention
+    digitalWrite(7, HIGH);
+    analogWrite(6, 125); //turn left wheel backwards
+    digitalWrite(8, LOW);
     }
   /////////////////////////////////////////////////////////////////////////////////
-
-  //CASE FOR TTF - turns right:
-  else if ((RS == 0) && (CS != 0) && (LS !=0)) {
-    Serial.println("no line on r, line on c, line on l");
-    LineR = false;
+  else if (R<=400) {
+    Serial.println("no line JFDHKJDFHSDJFJDSH"); //prints to terminal
+    LineR = true;
     LineC = true;
     LineL = true;
-    analogWrite(3,250);
-    analogWrite(5, 250);   
-  }
-  /////////////////////////////////////////////////////////////////////////////////
+    analogWrite(3, 0); //speed
+    analogWrite(5, 0); // turn right wheel - this is a convention
+    digitalWrite(7, HIGH);
+    analogWrite(6, 0); //turn left wheel FORWARDS
+    digitalWrite(8, HIGH);
 
-  //CASE FOR TFT - turns right by convention:
-  else if ((RS == 0) && (CS != 0) && (LS !=0)){
-    Serial.println("line on r, no line on c, line on l");
-    LineR = true;
-    LineC = false;
-    LineL = true;
-    analogWrite(3,250);
-    analogWrite(5, 250);   
-  }
-
-  ////////////////////////////////////////////////////////////////////////
-
-  //CASE FOR TFF - turns right even more:
-  else if ((RS != 0) && (CS == 0) && (LS == 0)) {
-    Serial.println("line on r"); //prints to terminal
-    LineR = true;
-    LineC = false;
-    LineL = false;
-    analogWrite(3, 250); //speed 
-    analogWrite(5, 250); // turn right wheel
     }
 
-  ////////////////////////////////////////////////////////////////////////
-
-  //CASE FTT - turns left:
-  else if ((RS != 0) && (CS != 0) && (LS == 0)){
-    Serial.println("line on r, line on c, no line on l");
-    LineR = true;
-    LineC = true;
-    LineL = false;
-    analogWrite(3, 250);
-    analogWrite(6,250);
-  }  
-
-  //ftf
-  /////////////////////////////////////////////////////////////////////////////////
-
-  //CASE FOR FTF - keeps going straight:
-  else if ((RS == 0) && (CS != 0) && (LS == 0)) {
-    Serial.println("no line on r, line on c, no line on l");
-    LineR = false;
-    LineC = true;
-    LineL = false;
-    analogWrite(3, 250); //speed 
-    analogWrite(5, 250); // right wheels
-    analogWrite(6, 250); // left wheels
-  }
-
-  //CASE FOR FFT - turns left even more:
-  else if ((RS == 0) && (CS == 0) && (LS != 0)) {
-    Serial.println("line on l"); //prints to terminal
-    LineR = false;
-    LineC = false;
-    LineL = true;
-    analogWrite(3, 250); //speed 
-    analogWrite(6, 250); // turn left wheel
-    }
-  //CASE FOR FFF - runs in timed left n right:
-  else if ((RS == 0) && (CS == 0) && (LS == 0)) {
-    Serial.println("no line detected"); // prints to terminal
-    LineR = false;
-    LineC= false;
-    LineL = false;
-    analogWrite(3, HIGH);
-    analogWrite(5, HIGH);
-    analogWrite(6, HIGH);
-    delay(50);
-    analogWrite(6, HIGH);
-    delay(50);
-    analogWrite(3, HIGH);
-    delay(50);
-  }
 }
