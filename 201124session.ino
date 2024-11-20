@@ -48,15 +48,12 @@ void loop() {
     analogWrite(3, 125); //speed
     analogWrite(5, 125); // turn right wheel - this is a convention
     digitalWrite(7, HIGH);
-    analogWrite(6, 125); //turn left wheel backwards
-    digitalWrite(8, LOW);
+    analogWrite(6, 125); 
+    digitalWrite(8, LOW); //turn left wheel backwards
     }
   /////////////////////////////////////////////////////////////////////////////////
   else if (R<=400) {
     Serial.println("no line JFDHKJDFHSDJFJDSH"); //prints to terminal
-    LineR = true;
-    LineC = true;
-    LineL = true;
     analogWrite(3, 0); //speed
     analogWrite(5, 0); // turn right wheel - this is a convention
     analogWrite(6, 0); //turn left wheel FORWARDS
