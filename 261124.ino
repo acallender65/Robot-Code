@@ -20,104 +20,83 @@ void loop() {
   int C = analogRead(A1);
   int L = analogRead(A2);
 
-
-  analogWrite(3, 0);
+  //analogWrite(3, 0); // set initial speed to zero
 
   ////////////////////////////////////////////////////////////////////////
 
-  //CASE FOR TTT - turns right by convention:
-  if ((R >400) && (C>400) && (L>400)) { 
-    Serial.println("ALL SENSORS ACTIVATED!"); //prints to terminal
-    analogWrite(3, 125);
-    analogWrite(5, 125); 
+  if ((L>400) && (C>400) && (R>400)) { // TTT - turns right by convention
+    Serial.println("ALL SENSORS ACTIVATED!");
+    analogWrite(3, 150);
+    analogWrite(5, 75); 
     digitalWrite(7, LOW); // turn right wheel backward
-    analogWrite(6, 188); //were testing this out will explain in person
+    analogWrite(6, 150); 
     digitalWrite(8, HIGH); //turn left wheel forward
+
+
     }
-
-
- //CASE FOR TTF - turns right:
-  if ((R >400) && (C>400) && (L <= 400)) { 
-    Serial.println("line on R and C"); //prints to terminal
-    analogWrite(3, 125);
-    analogWrite(5, 125); 
+  ////////////////////////////////////////////////////
+  else if ((R>400) && (C>400) && (L<= 400)) { // TTF - turns right
+    Serial.println("line on R and C"); 
+    analogWrite(3, 150);
+    analogWrite(5, 75); 
     digitalWrite(7, LOW); // turn right wheel backward
-    analogWrite(6, 125); //were testing this out will explain in person
+    analogWrite(6, 150); //were testing this out will explain in person
     digitalWrite(8, HIGH); //turn left wheel forward
-    }
 
-  //CASE FOR TFF - turns right even more:
-  if ((R >400) && (C <= 400) && (L<=400)) { 
-    //Serial.println("line on R"); //prints to terminal
-    //analogWrite(3, 125);
-    //analogWrite(5, 125); 
-    //digitalWrite(7, HIGH); // turn right wheel backward
-    //analogWrite(6, 63); 
-    //digitalWrite(8, HIGH); //turn left wheel forward
-
-    analogWrite(3, 125);
-    analogWrite(5, 125); 
-    digitalWrite(7, LOW); // turn right wheel backward
-    analogWrite(6, 125); 
-    digitalWrite(8, HIGH); //turn left wheel forward
-    }
-
-
-  //CASE FOR FTT - turns left:
-  if ((R <= 400) && (C>400) && (L>400)) { 
-    Serial.println("line on C and L"); //prints to terminal
-    analogWrite(3, 125);
-    analogWrite(5, 188); 
-    digitalWrite(7, HIGH); // turn right wheel backward
-    analogWrite(6, 125); 
-    digitalWrite(8, LOW); //turn left wheel forward
     }
   
-  
-  //CASE FOR FTF - keeps going straight:
-  if ((R <= 400) && (C>400) && (L <= 400)) { 
-    Serial.println("line on C"); //prints to terminal
-    analogWrite(3, 125);
-    analogWrite(5, 125); 
+  else if ((R>400) && (C<=400) && (L<= 400)) { // TFF - turns right more
+    Serial.println("line on R"); 
+    delay(2);
+    analogWrite(3, 150);
+    analogWrite(5, 75); 
     digitalWrite(7, LOW); // turn right wheel backward
-    analogWrite(6, 125); 
+    analogWrite(6, 150); //were testing this out will explain in person
     digitalWrite(8, HIGH); //turn left wheel forward
+  
     }
-  
-  
-  //CASE FOR FFT - turns left even more:
-  if ((R <= 400) && (C <= 400) && (L>400)) { 
+
+  ////////////////////////////////////////////////////
+
+  else if ((R<=400) && (C<=400) && (L>400)) { // FFT - turns left
     Serial.println("line on L"); //prints to terminal
-    analogWrite(3, 125);
-    analogWrite(5, 188); 
-    digitalWrite(7, HIGH); // turn right wheel backward
-    analogWrite(6, 125); 
-    digitalWrite(8, LOW); //turn left wheel forward
-    }
-  
-  
-  //CASE FOR FFF - runs in timed left n right:
-  if ((R <= 400) && (C <= 400) && (L <= 400)) { 
-    Serial.println("no line"); //prints to terminal
-    analogWrite(3, 125);
-    analogWrite(5, 125);
-    digitalWrite(7, HIGH);
-    delay(50);
-    analogWrite(6, 125);
-    digitalWrite(8, HIGH);
-    delay(50);
+    analogWrite(3, 150);
+    analogWrite(5, 150); 
+    digitalWrite(7, HIGH); // turn right wheel forward
+    analogWrite(6, 75); 
+    digitalWrite(8, LOW); //turn left wheel backward
+
     }
 
-  //CASE FOR TFT:
-  if ((R >400) && (C <= 400) && (L>400)) { 
-     Serial.println("no line"); //prints to terminal
-    analogWrite(3, 125);
-    analogWrite(5, 125);
-    digitalWrite(7, HIGH);
-    delay(50);
-    analogWrite(6, 125);
-    digitalWrite(8, HIGH);
-    delay(50);
+  else if ((R<=400) && (C>400) && (L>400)) { // FTT - turns left even more:
+    Serial.println("line on L and C"); //prints to terminal
+    delay(2);
+    analogWrite(3, 150);
+    analogWrite(5, 150); 
+    digitalWrite(7, HIGH); // turn right wheel forward
+    analogWrite(6, 75); 
+    digitalWrite(8, LOW); //turn left wheel backward
+ 
     }
+  
+  /////////////////////////////////////////////////////////////////////////////////
+  else if ((R<=400) && (C>400) && (L<=400)) { // FTF - go straight
+    Serial.println("go straight");
+    analogWrite(3, 125); //speed
+    analogWrite(5, 125); 
+    digitalWrite(7, HIGH); // turn right wheel forward
+    analogWrite(6, 125); 
+    digitalWrite(8, HIGH); //turn left wheel forward
+    //delay(3);
+    }
+
+  //////////////////////////////////////////////////////////////////////////////
+
+  else if ((R<=400) && (C<=400) && (L<=400)) { // FFF
+    Serial.println("no line");
+    
+  }
+
+  
 
 }
