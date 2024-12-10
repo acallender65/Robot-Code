@@ -98,6 +98,22 @@ void loop() {
   else if ((R<=400) && (C<=400) && (L<=400)) { // FFF
     Serial.println("no line");
 
+    analogWrite(3, 250); //speed
+    analogWrite(5, 250); 
+    digitalWrite(7, HIGH); // turn right wheel forward
+    analogWrite(6, 250); 
+    digitalWrite(8, HIGH); //turn left wheel forward
+    //delay(3);
+    delay(20);
+    
+
+    //
+    analogWrite(3, 250);
+    analogWrite(5, 100); 
+    digitalWrite(7, LOW); // turn right wheel backward
+    analogWrite(6, 250); 
+    digitalWrite(8, LOW); //turn left wheel forward
+
   }
 
 }
