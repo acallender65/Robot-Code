@@ -109,10 +109,12 @@ void loop() {
 
     //
     analogWrite(3, 250);
-    analogWrite(5, 100); 
+    analogWrite(5, 250); 
     digitalWrite(7, LOW); // turn right wheel backward
     analogWrite(6, 250); 
     digitalWrite(8, LOW); //turn left wheel forward
+
+    delay(20);
 
   }
 
