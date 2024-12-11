@@ -152,5 +152,6 @@ void loop() {
        digitalWrite(8, LOW); //turn left wheel backwards
        delay(5);
     }
+    LastValue = N;
   }
 }
